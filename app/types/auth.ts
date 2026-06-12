@@ -8,7 +8,6 @@ export type AuthCredentials = {
   username?: string;
   email?: string;
   password: string;
-  name?: string;
 };
 
 export type AuthResponse = {

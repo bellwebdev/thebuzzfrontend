@@ -30,14 +30,13 @@ function mapApiPost(p: ApiPost): Post {
 }
 
 export default function Feed() {
-  const { isAuthenticated, isReady } = useAuth();
+  const { isReady } = useAuth();
   const [items, setItems] = useState<FeedItem[]>(INITIAL_FEED);
 
   useEffect(() => {
     if (!isReady) return;
 
-    const endpoint = isAuthenticated ? "/feed/" : "/posts/";
-    api.get<ApiPost[]>(endpoint).then((posts) => {
+    api.get<ApiPost[]>("/posts/").then((posts) => {
       const postItems: FeedItem[] = posts.map((p) => ({ type: "post", data: mapApiPost(p) }));
       setItems((prev) => [
         ...prev.filter((item) => item.type === "event"),
@@ -46,7 +45,7 @@ export default function Feed() {
     }).catch((err) => {
       console.error("Failed to load posts:", err);
     });
-  }, [isReady, isAuthenticated]);
+  }, [isReady]);
 
   const handleNewPost = (post: Post) => {
     setItems((prev) => [{ type: "post", data: post }, ...prev]);

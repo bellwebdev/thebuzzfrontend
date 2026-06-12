@@ -60,10 +60,10 @@ export async function signUp(credentials: AuthCredentials): Promise<AuthResponse
   await api.post("/auth/register", {
     email: credentials.email,
     password: credentials.password,
-    ...(credentials.name ? { name: credentials.name } : {}),
+    ...(credentials.username ? { username: credentials.username } : {}),
   });
-  // Auto-login after registration
-  return signIn(credentials);
+  // Auto-login after registration — use email as the OAuth2 username field
+  return signIn({ username: credentials.email, password: credentials.password });
 }
 
 export async function signOut(): Promise<void> {

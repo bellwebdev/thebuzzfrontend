@@ -19,7 +19,7 @@ export default function Auth() {
   const redirectTo = searchParams.get("from") || "/";
 
   const [mode, setMode] = useState<AuthMode>("signin");
-  const [name, setName] = useState("");
+  const [signupUsername, setSignupUsername] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -39,7 +39,7 @@ export default function Auth() {
       const response =
         mode === "signin"
           ? await signIn({ username, password })
-          : await signUp({ email, password, name });
+          : await signUp({ email, password, username: signupUsername });
 
       login(response);
       navigate(redirectTo, { replace: true });
@@ -96,8 +96,8 @@ export default function Auth() {
                 id="name"
                 type="text"
                 placeholder="Jordan Bell"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={signupUsername}
+                onChange={(e) => setSignupUsername(e.target.value)}
                 required
                 autoComplete="name"
               />
