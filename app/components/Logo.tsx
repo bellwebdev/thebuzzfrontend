@@ -1,0 +1,22 @@
+type LogoProps = {
+  showText?: boolean;
+};
+
+export function HexLogo({ className = "hex-logo" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 36 36" fill="none" aria-hidden>
+      <polygon points="18,2 32,10 32,26 18,34 4,26 4,10" fill="#F26522" />
+      <polygon points="18,7 27,12 27,24 18,29 9,24 9,12" fill="#FEF0E8" />
+      <polygon points="18,12 23,15 23,21 18,24 13,21 13,15" fill="#F26522" />
+    </svg>
+  );
+}
+
+export function Logo({ showText = true }: LogoProps) {
+  return (
+    <>
+      <HexLogo />
+      {showText ? <span className="nav-logo-text">the buzz</span> : null}
+    </>
+  );
+}
