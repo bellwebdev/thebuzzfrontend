@@ -1,5 +1,7 @@
 import { createContext, useCallback, useContext, useRef, useState, type ReactNode } from "react";
 
+import styles from "./Toast.module.css";
+
 type ToastContextValue = {
   showToast: (message: string) => void;
 };
@@ -21,7 +23,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   return (
     <ToastContext.Provider value={{ showToast }}>
       {children}
-      <div className={`toast${visible ? " show" : ""}`} role="status" aria-live="polite">
+      <div className={`${styles.toast}${visible ? ` ${styles.show}` : ""}`} role="status" aria-live="polite">
         {message}
       </div>
     </ToastContext.Provider>

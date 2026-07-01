@@ -1,0 +1,144 @@
+.postCard {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  transition: border-color 0.15s;
+}
+
+.postCard:hover {
+  border-color: var(--border-strong);
+}
+
+.postHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.postAvatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  color: white;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: none;
+}
+
+.postMeta {
+  flex: 1 1 120px;
+  min-width: 0;
+}
+
+.postName {
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.postName:hover {
+  color: var(--orange);
+}
+
+.postTime {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+.postTag {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 12px;
+  background: var(--orange-light);
+  color: var(--orange-dark);
+  white-space: nowrap;
+}
+
+.postBody {
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.65;
+  margin-bottom: 14px;
+}
+
+.postActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+
+.postAction {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: none;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.postAction:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.postAction.liked {
+  color: var(--orange);
+}
+
+.postAction.liked svg path {
+  fill: var(--orange);
+}
+
+.postAction svg {
+  width: 16px;
+  height: 16px;
+}
+
+.postActionGuest {
+  opacity: 0.55;
+  cursor: pointer;
+}
+
+.postActionGuest:hover {
+  color: var(--orange);
+}
+
+@media (max-width: 767px) {
+  .postCard {
+    padding: 16px;
+  }
+
+  .postHeader {
+    gap: 10px;
+  }
+
+  .postTag {
+    margin-left: 54px;
+  }
+
+  .postBody {
+    font-size: 14px;
+  }
+
+  .postAction {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}

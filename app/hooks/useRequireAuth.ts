@@ -1,8 +1,8 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router";
 
-import { useAuth } from "~/components/AuthProvider";
-import { useToast } from "~/components/Toast";
+import { useAuth } from "~/components/AuthProvider/AuthProvider";
+import { useToast } from "~/components/Toast/Toast";
 
 export function useRequireAuth() {
   const { isAuthenticated } = useAuth();

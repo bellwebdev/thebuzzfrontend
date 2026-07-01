@@ -1,4 +1,4 @@
-import { Post } from "~/components/Post";
+import { Post } from "~/components/Post/Post";
 import type { Post as PostType } from "~/types";
 
 type PostsProps = {

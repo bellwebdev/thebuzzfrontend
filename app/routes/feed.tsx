@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-import { useAuth } from "~/components/AuthProvider";
-import { ComposePost } from "~/components/ComposePost";
-import { FeedStream } from "~/components/FeedStream";
+import { useAuth } from "~/components/AuthProvider/AuthProvider";
+import { ComposePost } from "~/components/ComposePost/ComposePost";
+import { FeedStream } from "~/components/FeedStream/FeedStream";
 import { INITIAL_FEED } from "~/data/feed";
 import { api } from "~/lib/api";
 import { colorFromId, timeAgo } from "~/lib/utils";

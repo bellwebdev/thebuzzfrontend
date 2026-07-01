@@ -1,0 +1,60 @@
+.composeCard {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+
+.composeRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.composeInputWrap {
+  flex: 1;
+}
+
+.composeInput {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: 15px;
+  color: var(--text);
+  background: var(--bg);
+  resize: none;
+  outline: none;
+  transition: border-color 0.15s;
+  line-height: 1.5;
+  min-height: 80px;
+}
+
+.composeInput:focus {
+  border-color: var(--orange);
+}
+
+.composeInput::placeholder {
+  color: var(--text-light);
+}
+
+.composeActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+@media (max-width: 767px) {
+  .composeCard {
+    padding: 16px;
+  }
+
+  .composeRow {
+    gap: 10px;
+  }
+
+  .composeInput {
+    min-height: 72px;
+    font-size: 16px;
+  }
+}

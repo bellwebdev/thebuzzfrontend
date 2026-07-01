@@ -1,0 +1,42 @@
+.signInPrompt {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.signInPromptCompact {
+  flex-direction: column;
+  align-items: stretch;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+}
+
+.signInPromptTitle {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.signInPromptDesc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.signInPromptBtn {
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.signInPromptCompact .signInPromptBtn {
+  width: 100%;
+}

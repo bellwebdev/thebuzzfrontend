@@ -7,7 +7,7 @@ import {
   ScrollRestoration,
 } from "react-router";
 
-import { AuthProvider } from "~/components/AuthProvider";
+import { AuthProvider } from "~/components/AuthProvider/AuthProvider";
 import type { Route } from "./+types/root";
 import "./app.css";
 

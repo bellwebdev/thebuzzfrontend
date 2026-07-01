@@ -1,12 +1,13 @@
 import { useState } from "react";
 
-import { useAuth } from "~/components/AuthProvider";
-import { SignInPrompt } from "~/components/SignInPrompt";
-import { useToast } from "~/components/Toast";
+import { useAuth } from "~/components/AuthProvider/AuthProvider";
+import { SignInPrompt } from "~/components/SignInPrompt/SignInPrompt";
+import { useToast } from "~/components/Toast/Toast";
 import { getInitials } from "~/lib/auth";
 import { api } from "~/lib/api";
 import { colorFromId } from "~/lib/utils";
 import type { ApiPost, Post } from "~/types";
+import styles from "./ComposePost.module.css";
 
 type ComposePostProps = {
   onPost: (post: Post) => void;
@@ -53,21 +54,21 @@ export function ComposePost({ onPost }: ComposePostProps) {
   };
 
   return (
-    <div className="compose-card">
-      <div className="compose-row">
+    <div className={styles.composeCard}>
+      <div className={styles.composeRow}>
         <div className="sidebar-avatar" style={{ width: 42, height: 42, fontSize: 14, flexShrink: 0 }}>
           {getInitials(user.name)}
         </div>
-        <div className="compose-input-wrap">
+        <div className={styles.composeInputWrap}>
           <textarea
-            className="compose-input"
+            className={styles.composeInput}
             placeholder="What do you want to start? Share an idea, find people, spark something…"
             rows={3}
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
-          <div className="compose-actions">
-            <button type="button" className="btn-post" onClick={handleSubmit}>
+          <div className={styles.composeActions}>
+            <button type="button" className="btn-primary" onClick={handleSubmit}>
               Post
             </button>
           </div>

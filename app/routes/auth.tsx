@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, Navigate, useNavigate, useSearchParams } from "react-router";
 
-import { useAuth } from "~/components/AuthProvider";
-import { HexLogo } from "~/components/Logo";
+import { useAuth } from "~/components/AuthProvider/AuthProvider";
+import { HexLogo } from "~/components/Logo/Logo";
 import { signIn, signUp } from "~/lib/auth";
 import type { Route } from "./+types/auth";
 

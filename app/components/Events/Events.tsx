@@ -1,4 +1,4 @@
-import { Event } from "~/components/Event";
+import { Event } from "~/components/Event/Event";
 import type { Event as EventType } from "~/types";
 
 type EventsProps = {

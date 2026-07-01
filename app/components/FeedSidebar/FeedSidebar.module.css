@@ -1,0 +1,70 @@
+.sidebar {
+  flex: 0 0 240px;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: sticky;
+  top: 78px;
+}
+
+.sidebarCard {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+
+.sidebarUser {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.sidebarUserName {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.sidebarUserSub {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.sidebarStats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
+
+.sidebarStat {
+  flex: 1 1 calc(50% - 5px);
+  text-align: center;
+}
+
+.sidebarStatN {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.sidebarStatL {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+@media (max-width: 1023px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .sidebarCard {
+    padding: 16px;
+  }
+}

@@ -1,5 +1,5 @@
-import { Event } from "~/components/Event";
-import { Post } from "~/components/Post";
+import { Event } from "~/components/Event/Event";
+import { Post } from "~/components/Post/Post";
 import type { FeedItem } from "~/types";
 
 type FeedStreamProps = {

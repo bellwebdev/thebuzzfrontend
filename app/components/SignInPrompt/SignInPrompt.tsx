@@ -1,5 +1,7 @@
 import { Link } from "react-router";
 
+import styles from "./SignInPrompt.module.css";
+
 type SignInPromptProps = {
   title?: string;
   description?: string;
@@ -12,12 +14,12 @@ export function SignInPrompt({
   compact = false,
 }: SignInPromptProps) {
   return (
-    <div className={`sign-in-prompt${compact ? " sign-in-prompt-compact" : ""}`}>
+    <div className={`${styles.signInPrompt}${compact ? ` ${styles.signInPromptCompact}` : ""}`}>
       <div>
-        <p className="sign-in-prompt-title">{title}</p>
-        <p className="sign-in-prompt-desc">{description}</p>
+        <p className={styles.signInPromptTitle}>{title}</p>
+        <p className={styles.signInPromptDesc}>{description}</p>
       </div>
-      <Link to="/auth?from=/" className="btn-primary sign-in-prompt-btn">
+      <Link to="/auth?from=/" className={`btn-primary ${styles.signInPromptBtn}`}>
         Sign in
       </Link>
     </div>

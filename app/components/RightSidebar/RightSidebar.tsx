@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { useRequireAuth } from "~/hooks/useRequireAuth";
-import { useToast } from "~/components/Toast";
+import { useToast } from "~/components/Toast/Toast";
 
 const SUGGESTIONS = [
   { id: "al", initials: "AL", name: "Alex Lee", sub: "Music · Arts", color: "#F26522" },

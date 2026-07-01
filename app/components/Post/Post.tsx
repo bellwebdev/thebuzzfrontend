@@ -2,8 +2,9 @@ import { useState } from "react";
 
 import { CommentIcon, HeartIcon, ShareIcon } from "~/components/icons";
 import { useRequireAuth } from "~/hooks/useRequireAuth";
-import { useToast } from "~/components/Toast";
+import { useToast } from "~/components/Toast/Toast";
 import type { Post as PostType } from "~/types";
+import styles from "./Post.module.css";
 
 type PostProps = {
   post: PostType;
@@ -29,27 +30,27 @@ export function Post({ post: initialPost }: PostProps) {
   };
 
   return (
-    <article className="post-card">
-      <header className="post-header">
-        <button type="button" className="post-avatar" style={{ background: post.authorColor }}>
+    <article className={styles.postCard}>
+      <header className={styles.postHeader}>
+        <button type="button" className={styles.postAvatar} style={{ background: post.authorColor }}>
           {post.authorInitials}
         </button>
-        <div className="post-meta">
-          <button type="button" className="post-name">
+        <div className={styles.postMeta}>
+          <button type="button" className={styles.postName}>
             {post.authorName}
           </button>
-          <div className="post-time">
+          <div className={styles.postTime}>
             {post.time}
             {post.hive ? ` · ${post.hive}` : ""}
           </div>
         </div>
-        {post.tag ? <span className="post-tag">{post.tag}</span> : null}
+        {post.tag ? <span className={styles.postTag}>{post.tag}</span> : null}
       </header>
-      <p className="post-body">{post.body}</p>
-      <div className="post-actions">
+      <p className={styles.postBody}>{post.body}</p>
+      <div className={styles.postActions}>
         <button
           type="button"
-          className={`post-action${post.liked ? " liked" : ""}${!isAuthenticated ? " post-action-guest" : ""}`}
+          className={`${styles.postAction}${post.liked ? ` ${styles.liked}` : ""}${!isAuthenticated ? ` ${styles.postActionGuest}` : ""}`}
           onClick={toggleLike}
           aria-disabled={!isAuthenticated}
         >
@@ -58,14 +59,14 @@ export function Post({ post: initialPost }: PostProps) {
         </button>
         <button
           type="button"
-          className={`post-action${!isAuthenticated ? " post-action-guest" : ""}`}
+          className={`${styles.postAction}${!isAuthenticated ? ` ${styles.postActionGuest}` : ""}`}
           onClick={handleComment}
           aria-disabled={!isAuthenticated}
         >
           <CommentIcon />
           <span>{post.commentCount}</span>
         </button>
-        <button type="button" className="post-action" onClick={() => showToast("Shared!")}>
+        <button type="button" className={styles.postAction} onClick={() => showToast("Shared!")}>
           <ShareIcon />
           Share
         </button>
