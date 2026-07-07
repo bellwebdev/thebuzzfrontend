@@ -3,6 +3,7 @@ import { useState } from "react";
 import { CalendarIcon } from "~/components/icons";
 import { useRequireAuth } from "~/hooks/useRequireAuth";
 import { useToast } from "~/components/Toast/Toast";
+import { api } from "~/lib/api";
 import type { Event as EventType } from "~/types";
 import styles from "./Event.module.css";
 
@@ -16,12 +17,29 @@ export function Event({ event: initialEvent }: EventProps) {
   const [event, setEvent] = useState(initialEvent);
 
   const toggleJoin = () => {
-    requireAuth(() => {
-      setEvent((prev) => {
-        const joined = !prev.joined;
-        showToast(joined ? "You're going! 🎉" : "Removed from your events");
-        return { ...prev, joined };
-      });
+    requireAuth(async () => {
+      const joining = !event.joined;
+      setEvent((prev) => ({
+        ...prev,
+        joined: joining,
+        attendeeCount: joining ? prev.attendeeCount + 1 : prev.attendeeCount - 1,
+      }));
+
+      try {
+        if (joining) {
+          await api.post(`/events/${event.id}/join`);
+        } else {
+          await api.delete(`/events/${event.id}/join`);
+        }
+        showToast(joining ? "You're going! 🎉" : "Removed from your events");
+      } catch {
+        setEvent((prev) => ({
+          ...prev,
+          joined: !joining,
+          attendeeCount: joining ? prev.attendeeCount - 1 : prev.attendeeCount + 1,
+        }));
+        showToast("Something went wrong. Try again.");
+      }
     }, "Sign in to join events");
   };
 

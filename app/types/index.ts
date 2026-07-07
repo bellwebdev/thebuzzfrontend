@@ -36,3 +36,18 @@ export type ApiPost = {
   created_at: string;
   updated_at: string;
 };
+
+export type ApiEvent = {
+  id: string;
+  organizer_id: string;
+  organizer: { id: string; name: string };
+  title: string;
+  description: string;
+  location: string | null;
+  start_time: string;
+  created_at: string;
+  updated_at: string;
+  attendee_count: number;
+  attendee_preview: { id: string; name: string; avatar_url: string | null }[];
+  is_attending: boolean;
+};

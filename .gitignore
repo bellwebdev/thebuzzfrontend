@@ -7,3 +7,8 @@
 # React Router
 /.react-router/
 /build/
+
+# Docs and AI tools.
+/docs/
+api_endpoints.md
+CLAUDE.md

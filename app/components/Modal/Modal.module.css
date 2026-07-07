@@ -1,0 +1,56 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 26, 26, 0.5);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 80px 20px;
+  z-index: 200;
+}
+
+.panel {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  max-height: 100%;
+}
+
+.panelBody {
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.closeButton {
+  position: absolute;
+  top: 23px;
+  right: -14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.closeButton svg {
+  width: 16px;
+  height: 16px;
+}
+
+.closeButton:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+@media (max-width: 767px) {
+  .overlay {
+    padding: 16px;
+    align-items: flex-end;
+  }
+}

@@ -15,3 +15,19 @@ export function timeAgo(isoString: string): string {
   const days = Math.floor(hours / 24);
   return days === 1 ? "yesterday" : `${days}d ago`;
 }
+
+const EVENT_DATE_FORMAT = new Intl.DateTimeFormat("en-US", {
+  weekday: "short",
+  month: "short",
+  day: "numeric",
+});
+
+const EVENT_TIME_FORMAT = new Intl.DateTimeFormat("en-US", {
+  hour: "numeric",
+  minute: "2-digit",
+});
+
+export function formatEventDate(isoString: string): string {
+  const date = new Date(isoString);
+  return `${EVENT_DATE_FORMAT.format(date)} · ${EVENT_TIME_FORMAT.format(date)}`;
+}

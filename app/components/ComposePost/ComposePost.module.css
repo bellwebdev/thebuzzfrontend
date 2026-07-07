@@ -5,13 +5,61 @@
   padding: 18px;
 }
 
+.composeHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.composeHeader :global(.auth-tabs) {
+  margin-bottom: 0;
+}
+
 .composeRow {
   display: flex;
   align-items: flex-start;
   gap: 12px;
 }
 
+.avatarSpacer {
+  width: 42px;
+  flex-shrink: 0;
+}
+
 .composeInputWrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.composeField {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 11px 14px;
+  font-size: 15px;
+  color: var(--text);
+  background: var(--bg);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.composeField:focus {
+  border-color: var(--orange);
+}
+
+.composeField::placeholder {
+  color: var(--text-light);
+}
+
+.composeFieldRow {
+  display: flex;
+  gap: 10px;
+}
+
+.composeFieldRow .composeField {
   flex: 1;
 }
 
