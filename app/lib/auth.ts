@@ -13,6 +13,16 @@ export function getInitials(name: string | null | undefined): string {
     .join("");
 }
 
+/**
+ * Human-facing name for a user. The backend `UserRead` no longer has a single
+ * `name` field — prefer `display_name`, fall back to the required `username`.
+ */
+export function userDisplayName(
+  user: Pick<User, "display_name" | "username">,
+): string {
+  return user.display_name ?? user.username;
+}
+
 export function getStoredUser(): User | null {
   if (typeof window === "undefined") return null;
   const raw = localStorage.getItem(USER_KEY);
@@ -61,6 +71,7 @@ export async function signUp(credentials: AuthCredentials): Promise<AuthResponse
     email: credentials.email,
     password: credentials.password,
     ...(credentials.username ? { username: credentials.username } : {}),
+    ...(credentials.displayName ? { display_name: credentials.displayName } : {}),
   });
   // Auto-login after registration — use email as the OAuth2 username field
   return signIn({ username: credentials.email, password: credentials.password });

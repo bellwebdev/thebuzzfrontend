@@ -1,0 +1,55 @@
+.back {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.back:hover {
+  color: var(--orange);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.hex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  color: white;
+  font-weight: 700;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.name {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+.empty {
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+@media (max-width: 767px) {
+  .name {
+    font-size: 19px;
+  }
+}

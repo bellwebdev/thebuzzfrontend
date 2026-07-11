@@ -1,13 +1,17 @@
 export type User = {
   id: string;
-  name?: string | null;
   email: string;
+  username: string;
+  display_name?: string | null;
+  bio?: string | null;
+  avatar_url?: string | null;
 };
 
 export type AuthCredentials = {
   username?: string;
   email?: string;
   password: string;
+  displayName?: string;
 };
 
 export type AuthResponse = {
