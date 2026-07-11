@@ -47,13 +47,17 @@ export function Post({ post: initialPost }: PostProps) {
   return (
     <article className={styles.postCard}>
       <header className={styles.postHeader}>
-        <button type="button" className={styles.postAvatar} style={{ background: post.authorColor }}>
+        <button
+          type="button"
+          className={styles.postAvatar}
+          style={{ background: post.authorColor }}
+        >
           {post.authorInitials}
         </button>
         <div className={styles.postMeta}>
-          <button type="button" className={styles.postName}>
+          <a href="#" className={styles.postName}>
             {post.authorName}
-          </button>
+          </a>
           <div className={styles.postTime}>
             {post.time}
             {post.hive ? ` · ${post.hive}` : ""}
@@ -81,13 +85,20 @@ export function Post({ post: initialPost }: PostProps) {
           <CommentIcon />
           <span>{post.commentCount}</span>
         </button>
-        <button type="button" className={styles.postAction} onClick={() => showToast("Shared!")}>
+        <button
+          type="button"
+          className={styles.postAction}
+          onClick={() => showToast("Shared!")}
+        >
           <ShareIcon />
           Share
         </button>
       </div>
       {showComments ? (
-        <PostComments postId={post.id} onCountChange={handleCommentCountChange} />
+        <PostComments
+          postId={post.id}
+          onCountChange={handleCommentCountChange}
+        />
       ) : null}
     </article>
   );
