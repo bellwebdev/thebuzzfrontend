@@ -1,0 +1,77 @@
+.thread {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.empty {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.comment {
+  display: flex;
+  gap: 10px;
+}
+
+.commentAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 11px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.commentBody {
+  flex: 1 1 auto;
+  min-width: 0;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+}
+
+.commentText {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.commentTime {
+  font-size: 11px;
+  color: var(--text-light);
+}
+
+.composer {
+  display: flex;
+  gap: 8px;
+}
+
+.composerInput {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--card);
+}
+
+.composerInput:focus {
+  outline: none;
+  border-color: var(--orange);
+}
+
+@media (max-width: 767px) {
+  .commentText {
+    font-size: 13px;
+  }
+}

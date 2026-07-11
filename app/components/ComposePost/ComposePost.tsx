@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useAuth } from "~/components/AuthProvider/AuthProvider";
 import { SignInPrompt } from "~/components/SignInPrompt/SignInPrompt";
 import { useToast } from "~/components/Toast/Toast";
-import { getInitials } from "~/lib/auth";
+import { getInitials, userDisplayName } from "~/lib/auth";
 import { api } from "~/lib/api";
-import { colorFromId, formatEventDate } from "~/lib/utils";
-import type { ApiEvent, ApiPost, Event, Post } from "~/types";
+import { fetchHives } from "~/lib/hives";
+import { mapApiEvent, mapApiPost } from "~/lib/mappers";
+import type { ApiEvent, ApiHive, ApiPost, Event, Post } from "~/types";
 import styles from "./ComposePost.module.css";
 
 type ComposePostProps = {
@@ -25,6 +26,16 @@ export function ComposePost({ onPost, onEvent }: ComposePostProps) {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [startTime, setStartTime] = useState("");
+  const [hives, setHives] = useState<ApiHive[]>([]);
+  const [hiveId, setHiveId] = useState("");
+
+  useEffect(() => {
+    fetchHives()
+      .then(setHives)
+      .catch(() => {
+        /* hive picker is optional — posting still works without it */
+      });
+  }, []);
 
   if (!isAuthenticated || !user) {
     return (
@@ -34,6 +45,9 @@ export function ComposePost({ onPost, onEvent }: ComposePostProps) {
       />
     );
   }
+
+  const displayName = userDisplayName(user);
+  const hiveField = hiveId ? { hive_id: hiveId } : {};
 
   const handlePostSubmit = async () => {
     const trimmed = text.trim();
@@ -46,17 +60,9 @@ export function ComposePost({ onPost, onEvent }: ComposePostProps) {
       const created = await api.post<ApiPost>("/posts/", {
         content: trimmed,
         visibility: "public",
+        ...hiveField,
       });
-      onPost({
-        id: created.id,
-        authorName: user.name ?? user.email,
-        authorInitials: getInitials(user.name),
-        authorColor: colorFromId(user.id),
-        body: trimmed,
-        time: "Just now",
-        likeCount: 0,
-        commentCount: 0,
-      });
+      onPost(mapApiPost(created));
       setText("");
       showToast("Posted! 🐝");
     } catch {
@@ -78,19 +84,9 @@ export function ComposePost({ onPost, onEvent }: ComposePostProps) {
         description: trimmedDescription,
         location: location.trim() || null,
         start_time: new Date(startTime).toISOString(),
+        ...hiveField,
       });
-      onEvent({
-        id: created.id,
-        title: created.title,
-        description: created.description,
-        dateLabel: formatEventDate(created.start_time),
-        attendeeCount: created.attendee_count,
-        attendeeInitials: created.attendee_preview.map((a) =>
-          getInitials(a.name),
-        ),
-        attendeeColors: created.attendee_preview.map((a) => colorFromId(a.id)),
-        joined: created.is_attending,
-      });
+      onEvent(mapApiEvent(created));
       setTitle("");
       setDescription("");
       setLocation("");
@@ -101,6 +97,21 @@ export function ComposePost({ onPost, onEvent }: ComposePostProps) {
     }
   };
 
+  const hiveSelect = (
+    <select
+      className={styles.composeField}
+      value={hiveId}
+      onChange={(event) => setHiveId(event.target.value)}
+    >
+      <option value="">General hive</option>
+      {hives.map((hive) => (
+        <option key={hive.id} value={hive.id}>
+          {hive.name}
+        </option>
+      ))}
+    </select>
+  );
+
   return (
     <div className={styles.composeCard}>
       <div className={styles.composeHeader}>
@@ -108,7 +119,7 @@ export function ComposePost({ onPost, onEvent }: ComposePostProps) {
           className="sidebar-avatar"
           style={{ width: 42, height: 42, fontSize: 14, flexShrink: 0 }}
         >
-          {getInitials(user.name)}
+          {getInitials(displayName)}
         </div>
         <div className="auth-tabs">
           <button
@@ -138,6 +149,7 @@ export function ComposePost({ onPost, onEvent }: ComposePostProps) {
               value={text}
               onChange={(e) => setText(e.target.value)}
             />
+            <div className={styles.composeFieldRow}>{hiveSelect}</div>
             <div className={styles.composeActions}>
               <button
                 type="button"
@@ -179,6 +191,7 @@ export function ComposePost({ onPost, onEvent }: ComposePostProps) {
                 onChange={(e) => setStartTime(e.target.value)}
               />
             </div>
+            <div className={styles.composeFieldRow}>{hiveSelect}</div>
             <div className={styles.composeActions}>
               <button
                 type="button"

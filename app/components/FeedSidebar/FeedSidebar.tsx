@@ -1,6 +1,6 @@
 import { useAuth } from "~/components/AuthProvider/AuthProvider";
 import { SignInPrompt } from "~/components/SignInPrompt/SignInPrompt";
-import { getInitials } from "~/lib/auth";
+import { getInitials, userDisplayName } from "~/lib/auth";
 import styles from "./FeedSidebar.module.css";
 
 const HIVES = [
@@ -17,9 +17,9 @@ export function FeedSidebar() {
       {isAuthenticated && user ? (
         <div className={styles.sidebarCard}>
           <div className={styles.sidebarUser}>
-            <div className="sidebar-avatar">{getInitials(user.name)}</div>
+            <div className="sidebar-avatar">{getInitials(userDisplayName(user))}</div>
             <div>
-              <div className={styles.sidebarUserName}>{user.name}</div>
+              <div className={styles.sidebarUserName}>{userDisplayName(user)}</div>
               <div className={styles.sidebarUserSub}>{user.email}</div>
             </div>
           </div>
