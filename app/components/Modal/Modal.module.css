@@ -24,7 +24,7 @@
 .closeButton {
   position: absolute;
   top: 23px;
-  right: -14px;
+  right: 15px;
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -51,6 +51,6 @@
 @media (max-width: 767px) {
   .overlay {
     padding: 16px;
-    align-items: flex-end;
+    align-items: center;
   }
 }

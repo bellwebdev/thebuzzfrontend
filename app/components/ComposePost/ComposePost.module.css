@@ -101,8 +101,12 @@
     gap: 10px;
   }
 
+  .composeInput,
+  .composeField {
+    font-size: 16px;
+  }
+
   .composeInput {
     min-height: 72px;
-    font-size: 16px;
   }
 }
