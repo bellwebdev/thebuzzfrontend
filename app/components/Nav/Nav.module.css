@@ -34,7 +34,9 @@
   cursor: pointer;
   border: none;
   background: none;
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
 }
 
 .navLink:hover {
@@ -83,7 +85,7 @@
 
 @media (max-width: 767px) {
   .nav {
-    padding: 0 12px;
+    padding: 0 16px;
     height: 52px;
   }
 
