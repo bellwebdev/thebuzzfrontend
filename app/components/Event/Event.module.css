@@ -80,6 +80,7 @@
 }
 
 .btnJoin {
+  display: inline-block;
   font-size: 13px;
   font-weight: 600;
   padding: 7px 16px;
@@ -87,8 +88,21 @@
   border: none;
   background: var(--orange);
   color: white;
+  text-decoration: none;
   cursor: pointer;
   transition: background 0.15s;
+}
+
+.externalLink {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--orange-dark);
+  margin-bottom: 14px;
+}
+
+.externalLink:hover {
+  text-decoration: underline;
 }
 
 .btnJoin:hover {

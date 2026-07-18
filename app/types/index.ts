@@ -26,6 +26,8 @@ export type Profile = {
   joinedLabel: string;
 };
 
+export type EventSource = "internal" | "ticketmaster";
+
 export type Event = {
   id: string;
   title: string;
@@ -36,6 +38,8 @@ export type Event = {
   attendeeInitials: string[];
   attendeeColors: string[];
   joined?: boolean;
+  source: EventSource;
+  externalUrl: string | null;
 };
 
 export type Hive = {
@@ -97,8 +101,9 @@ export type ApiPost = {
 
 export type ApiEvent = {
   id: string;
-  organizer_id: string;
-  organizer: ApiAuthor;
+  // Null for Ticketmaster-sourced events, which have no real organizer.
+  organizer_id: string | null;
+  organizer: ApiAuthor | null;
   hive_id: string | null;
   hive: ApiHive | null;
   title: string;
@@ -110,6 +115,8 @@ export type ApiEvent = {
   attendee_count: number;
   attendee_preview: ApiAttendee[];
   is_attending: boolean;
+  source: EventSource;
+  external_url: string | null;
 };
 
 export type ApiComment = {

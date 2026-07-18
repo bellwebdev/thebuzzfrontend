@@ -72,6 +72,8 @@ export function mapApiEvent(e: ApiEvent): Event {
     attendeeInitials: e.attendee_preview.map((a) => getInitials(a.name)),
     attendeeColors: e.attendee_preview.map((a) => colorFromId(a.id)),
     joined: e.is_attending,
+    source: e.source,
+    externalUrl: e.external_url,
   };
 }
 

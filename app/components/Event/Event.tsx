@@ -53,6 +53,16 @@ export function Event({ event: initialEvent }: EventProps) {
         </div>
         <h3 className={styles.eventTitle}>{event.title}</h3>
         <p className={styles.eventDesc}>{event.description}</p>
+        {event.source === "ticketmaster" && event.externalUrl ? (
+          <a
+            href={event.externalUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.externalLink}
+          >
+            View on Ticketmaster ↗
+          </a>
+        ) : null}
         <div className={styles.eventFooter}>
           <div className={styles.eventAttendees}>
             <div className={styles.attendeeStack}>
