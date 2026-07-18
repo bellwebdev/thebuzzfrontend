@@ -3,6 +3,7 @@ export type Visibility = "public" | "friends" | "private";
 export type Post = {
   id: string;
   authorName: string;
+  authorUsername: string;
   authorInitials: string;
   authorColor: string;
   body: string;
@@ -12,6 +13,17 @@ export type Post = {
   likeCount: number;
   commentCount: number;
   liked?: boolean;
+};
+
+export type Profile = {
+  id: string;
+  username: string;
+  displayName: string;
+  bio: string | null;
+  avatarUrl: string | null;
+  initials: string;
+  color: string;
+  joinedLabel: string;
 };
 
 export type Event = {
@@ -53,6 +65,10 @@ export type FeedItem =
 
 export type ApiAuthor = { id: string; name: string };
 
+// Post authors additionally carry `username` (see backend AuthorRead); event
+// organizers (ApiAuthor) don't have this field yet.
+export type ApiPostAuthor = ApiAuthor & { username: string };
+
 export type ApiAttendee = { id: string; name: string; avatar_url: string | null };
 
 export type ApiHive = {
@@ -70,7 +86,7 @@ export type ApiHive = {
 export type ApiPost = {
   id: string;
   author_id: string;
-  author?: ApiAuthor;
+  author?: ApiPostAuthor;
   hive_id: string | null;
   hive: ApiHive | null;
   content: string;
@@ -111,4 +127,14 @@ export type ApiComment = {
 export type ApiLikeCount = {
   count: number;
   liked_by_me: boolean;
+};
+
+/** Response of `GET /users/{username}` (backend `PublicProfileRead`). */
+export type ApiPublicProfile = {
+  id: string;
+  username: string;
+  display_name: string | null;
+  bio: string | null;
+  avatar_url: string | null;
+  created_at: string;
 };

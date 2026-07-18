@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router";
 
 import { CommentIcon, HeartIcon, ShareIcon } from "~/components/icons";
 import { PostComments } from "~/components/Post/PostComments/PostComments";
@@ -55,9 +56,9 @@ export function Post({ post: initialPost }: PostProps) {
           {post.authorInitials}
         </button>
         <div className={styles.postMeta}>
-          <a href="#" className={styles.postName}>
+          <Link to={`/u/${post.authorUsername}`} className={styles.postName}>
             {post.authorName}
-          </a>
+          </Link>
           <div className={styles.postTime}>
             {post.time}
             {post.hive ? ` · ${post.hive}` : ""}

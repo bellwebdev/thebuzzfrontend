@@ -27,10 +27,13 @@ export function Nav() {
         >
           Hives
         </NavLink>
-        {isAuthenticated ? (
-          <button type="button" className={`${styles.navLink} ${styles.navLinkDesktop}`} onClick={() => {}}>
+        {isAuthenticated && user ? (
+          <NavLink
+            to={`/u/${user.username}`}
+            className={({ isActive }) => `${styles.navLink} ${styles.navLinkDesktop}${isActive ? ` ${styles.active}` : ""}`}
+          >
             Profile
-          </button>
+          </NavLink>
         ) : null}
       </div>
       {isAuthenticated && user ? (
