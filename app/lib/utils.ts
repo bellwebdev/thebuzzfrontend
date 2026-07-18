@@ -31,3 +31,12 @@ export function formatEventDate(isoString: string): string {
   const date = new Date(isoString);
   return `${EVENT_DATE_FORMAT.format(date)} · ${EVENT_TIME_FORMAT.format(date)}`;
 }
+
+const JOIN_DATE_FORMAT = new Intl.DateTimeFormat("en-US", {
+  month: "long",
+  year: "numeric",
+});
+
+export function formatJoinDate(isoString: string): string {
+  return `Joined ${JOIN_DATE_FORMAT.format(new Date(isoString))}`;
+}

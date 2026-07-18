@@ -4,13 +4,15 @@ import type {
   ApiHive,
   ApiLikeCount,
   ApiPost,
+  ApiPublicProfile,
   Comment,
   Event,
   Hive,
   Post,
+  Profile,
 } from "~/types";
 import { getInitials } from "~/lib/auth";
-import { colorFromId, formatEventDate, timeAgo } from "~/lib/utils";
+import { colorFromId, formatEventDate, formatJoinDate, timeAgo } from "~/lib/utils";
 
 export function mapApiHive(h: ApiHive): Hive {
   return {
@@ -33,6 +35,7 @@ export function mapApiPost(p: ApiPost, likes?: ApiLikeCount, commentCount = 0): 
   return {
     id: p.id,
     authorName: name,
+    authorUsername: p.author?.username ?? "",
     authorInitials: getInitials(name),
     authorColor: colorFromId(p.author_id),
     body: p.content,
@@ -41,6 +44,20 @@ export function mapApiPost(p: ApiPost, likes?: ApiLikeCount, commentCount = 0): 
     likeCount: likes?.count ?? 0,
     commentCount,
     liked: likes?.liked_by_me ?? false,
+  };
+}
+
+export function mapApiProfile(p: ApiPublicProfile): Profile {
+  const name = p.display_name ?? p.username;
+  return {
+    id: p.id,
+    username: p.username,
+    displayName: name,
+    bio: p.bio,
+    avatarUrl: p.avatar_url,
+    initials: getInitials(name),
+    color: colorFromId(p.id),
+    joinedLabel: formatJoinDate(p.created_at),
   };
 }
 
